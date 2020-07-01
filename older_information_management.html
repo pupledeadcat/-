@@ -1,0 +1,301 @@
+<!DOCTYPE html>
+<html>
+<meta charset="UTF-8">
+<head>
+    <title>养老系统</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <!-- Fonts -->
+    <link href="http://fonts.googleapis.com/css?family=Roboto+Condensed:300,400" rel="stylesheet" type="text/css">
+    <link href="http://fonts.googleapis.com/css?family=Lato:300,400,700,900" rel="stylesheet" type="text/css">
+    <!-- CSS Libs -->
+     <link href="{{url_for('static',filename='lib/css/bootstrap.min.css')}}" rel="stylesheet">
+    <link href="{{url_for('static',filename='lib/css/font-awesome.min.css')}}" rel="stylesheet">
+    <link href="{{url_for('static',filename='lib/css/animate.min.css')}}" rel="stylesheet">
+    <link href="{{url_for('static',filename='lib/css/bootstrap-switch.min.css')}}" rel="stylesheet">
+    <link href="{{url_for('static',filename='lib/css/checkbox3.min.css')}}" rel="stylesheet">
+    <link href="{{url_for('static',filename='lib/css/jquery.dataTables.min.css')}}" rel="stylesheet">
+    <link href="{{url_for('static',filename='lib/css/dataTables.bootstrap.css')}}" rel="stylesheet">
+    <link href="{{url_for('static',filename='lib/css/select2.min.css')}}" rel="stylesheet">
+    <!-- CSS App -->
+     <link href="{{url_for('static',filename='css/style.css')}}" rel="stylesheet">
+    <link href="{{url_for('static',filename='css/themes/flat-blue.css')}}" rel="stylesheet">
+
+	<script src="{{url_for('static',filename='lib/js/jquery-1.4.4.min.js')}}"></script>
+
+    <link rel="stylesheet" href="{{url_for('static',filename='css/style2.css')}}">
+
+</head>
+
+<body class="flat-blue">
+    <div class="app-container">
+        <div class="row content-container">
+            <nav class="navbar navbar-default navbar-fixed-top navbar-top">
+                <div class="container-fluid">
+                    <div class="navbar-header">
+                        <button type="button" class="navbar-expand-toggle">
+                            <i class="fa fa-bars icon"></i>
+                        </button>
+                        <ol class="breadcrumb navbar-breadcrumb">
+                            <li class="active">老人信息管理</li>
+							<li class="active">查看/管理老人信息</li>
+                        </ol>
+                        <button type="button" class="navbar-right-expand-toggle pull-right visible-xs">
+                            <i class="fa fa-th icon"></i>
+                        </button>
+                    </div>
+                    <ul class="nav navbar-nav navbar-right">
+                        <li class="dropdown profile">
+                            <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">你的名字 <span class="caret"></span></a>
+                            <ul class="dropdown-menu animated fadeInDown">
+                                <li>
+                                    <div>
+                                        <h4 class="username">你的名字</h4>
+										<p>系统管理员</p>
+                                        <div class="btn-group margin-bottom-2x" role="group">
+                                            <a href="{{url_for('land')}}"><button type="button" class="btn btn-default"><i class="fa fa-sign-out"></i>注销</button></a>
+                                      </div>
+                                    </div>
+                                </li>
+                            </ul>
+                        </li>
+                    </ul>
+                </div>
+            </nav>
+            <div class="side-menu sidebar-inverse">
+                <nav class="navbar navbar-default" role="navigation">
+                    <div class="side-menu-container">
+                        <div class="navbar-header">
+                            <a class="navbar-brand">
+                                <div class="icon fa fa-paper-plane"></div>
+                                <div class="title">养老系统</div>
+                            </a>
+                            <button type="button" class="navbar-expand-toggle pull-right visible-xs">
+                                <i class="fa fa-times icon"></i>
+                            </button>
+                        </div>
+                        <ul class="nav navbar-nav">
+                            <li class="active">
+                                <a href="{{url_for('homepage')}}">
+                                    <span class="icon fa fa-tachometer"></span><span class="title">主界面</span>
+                                </a>
+                            </li>
+                            <li class="panel panel-default dropdown">
+                                <a data-toggle="collapse" href="#query-statistics">
+                                    <span class="icon fa fa-gears"></span><span class="title">系统设置模块</span>
+                                </a>
+                                <!-- Dropdown level 1 -->
+                                <div id="query-statistics" class="panel-collapse collapse">
+                                    <div class="panel-body">
+                                        <ul class="nav navbar-nav">
+                                            <li><a href="{{url_for('homepage'}}"> <h3>维护信息</h3></a>
+                                            </li>
+
+                                            <li><a href="{{url_for('homepage'}}"> <h3>修改密码</h3></a>
+                                            </li>
+                                           
+                                        </ul>
+                                    </div>
+                                </div>
+                            </li>
+                             <li class="panel panel-default dropdown">
+                                <a data-toggle="collapse" href="#contract-information-management1">
+                                    <span class="icon fa fa-file"></span><span class="title">老人信息管理</span>
+                                </a>
+                                <!-- Dropdown level 1 -->
+                                <div id="contract-information-management1" class="panel-collapse collapse">
+                                    <div class="panel-body">
+                                        <ul class="nav navbar-nav">
+                                            <li><a href="{{url_for('homepage')}}"><h3>新增老人信息</h3></a>
+                                            </li>
+
+                                            <li><a href="{{url_for('homepage'}}"><h3>查看/管理老人信息</h3></a>
+                                            </li>
+                                           
+                                        </ul>
+                                    </div>
+                                </div>
+                            </li>
+
+							<li class="panel panel-default dropdown">
+                                <a data-toggle="collapse" href="#client-information-management">
+                                    <span class="icon fa fa-file"></span><span class="title">工作人员信息管理</span>
+                                </a>
+                                <!-- Dropdown level 1 -->
+                                <div id="client-information-management" class="panel-collapse collapse">
+                                    <div class="panel-body">
+                                        <ul class="nav navbar-nav">
+                                            <li><a href="{{url_for('homepage')}}"><h3>新增工作人员信息</h3></a>
+                                            </li>
+                                            <li><a href="{{url_for('homepage')}}"><h3>查看/管理工作人员信息</h3></a>
+                                            </li>
+
+                                        </ul>
+                                    </div>
+                                </div>
+                            </li>
+							 <li class="panel panel-default dropdown">
+                                <a data-toggle="collapse" href="#contract-information-management1">
+                                    <span class="icon fa fa-file"></span><span class="title">义工信息管理</span>
+                                </a>
+                                <!-- Dropdown level 1 -->
+                                <div id="contract-information-management1" class="panel-collapse collapse">
+                                    <div class="panel-body">
+                                        <ul class="nav navbar-nav">
+                                            <li><a href="{{url_for('homepage')}}"><h3>义工老人信息</h3></a>
+                                            </li>
+
+                                            <li><a href="{{url_for('homepage'}}"><h3>查看/管理义工信息</h3></a>
+                                            </li>
+                                           
+                                        </ul>
+                                    </div>
+                                </div>
+                            </li>
+
+                            <li class="panel panel-default dropdown">
+                                <a data-toggle="collapse" href="#contract-information-management1">
+                                    <span class="icon fa fa-calculator"></span><span class="title">数据管理</span>
+                                </a>
+                                <!-- Dropdown level 1 -->
+                                <div id="contract-information-management1" class="panel-collapse collapse">
+                                    <div class="panel-body">
+                                        <ul class="nav navbar-nav">
+                                            <li><a href="{{url_for('homepage')}}"><h3>不确定</h3></a>
+                                            </li>
+
+                                         
+                                           
+                                        </ul>
+                                    </div>
+                                </div>
+                            </li>
+                            <li class="panel panel-default dropdown">
+                                <a data-toggle="collapse" href="#contract-information-management1">
+                                    <span class="icon fa fa-eye"></span><span class="title">摄像头管理</span>
+                                </a>
+                                <!-- Dropdown level 1 -->
+                                <div id="contract-information-management1" class="panel-collapse collapse">
+                                    <div class="panel-body">
+                                        <ul class="nav navbar-nav">
+                                            <li><a href="{{url_for('homepage')}}"><h3>不确定</h3></a>
+                                            </li>
+   
+                                        </ul>
+                                    </div>
+                                </div>
+                            </li>
+                        </ul>
+                    </div>
+                    <!-- /.navbar-collapse -->
+                </nav>
+            </div>
+          
+			
+            <!-- Main Content -->
+            <div class="container-fluid">
+                <div class="side-body">
+
+					<div class="page-title">
+                        <span class="title">老人信息列表</span>
+                    </div>
+
+					<div class="row">
+                        <div class="col-xs-12">
+                            <div class="card">
+
+                                <div class="search d5">
+	                                <form>
+	                                  <input type="text" placeholder="请输入要查询的老人姓名..." id="key" onkeydown="onSearch(this)">
+                                    </form>
+
+                                    <script type="text/javascript">
+                                    function onSearch(obj){//js函数开始
+                                        setTimeout(function(){//因为是即时查询，需要用setTimeout进行延迟，让值写入到input内，再读取
+                                            var storeId = document.getElementById('HTlist2');//获取table的id标识
+                                            var rowsLength = storeId.rows.length;//表格总共有多少行
+                                            var key = obj.value;//获取输入框的值
+                                            var searchCol = 0;//要搜索的哪一列，这里是第一列，从0开始数起
+                                            for(var i=1;i<rowsLength;i++){//按表的行数进行循环，本例第一行是标题，所以i=1，从第二行开始筛选（从0数起）
+                                                var searchText = storeId.rows[i].cells[searchCol].innerHTML;//取得table行，列的值
+                                                if(searchText.match(key)){//用match函数进行筛选，如果input的值，即变量 key的值为空，返回的是ture，
+                                                storeId.rows[i].style.display='';//显示行操作，
+                                                }
+                                                else{
+                                                        storeId.rows[i].style.display='none';//隐藏行操作
+                                                }
+                                            }
+                                        },200);//200为延时时间
+                                    }
+                                    </script>
+                                </div>
+
+							    <div class="card-header">
+                                    <div class="card-title">
+                                        <div class="title">老人信息列表</div>
+                                    </div>
+                                </div>
+
+                                <div class="card-body">
+                                    <table class="datatable table table-striped" cellspacing="0" width="100%" id="HTlist2">
+                                        <thead>
+                                            <tr>
+                                                <th>姓名</th>
+                                                <th>姓名</th>
+                                                <th>姓名</th>
+                                                <th>更改信息</th>
+                                                <th>删除信息</th>
+                                            </tr>
+                                        </thead>
+
+                                        <tbody>
+                                           
+                                            <tr>
+                                                <td>1</td>
+                                                <td>1</td>
+                                                <td>1</td>
+                                                <td><a href="{{url_for('homepage')}}">更改</a></td>
+                                                <td><a href="{{url_for('homepage')}}">删除</a></td>
+                                            </tr>
+											
+                                          
+
+                                        </tbody>
+                                    </table>
+                                </div>
+
+                            </div>
+                        </div>
+                    </div>
+
+                </div>
+            </div>
+
+        </div>
+        <footer class="app-footer">
+            <div class="wrapper"> <span class="pull-right">回到顶部 <a href="#"><i class="fa fa-long-arrow-up"></i></a></span> © 2019 Copyright  by 及振卿小组
+            </div>
+        </footer>
+
+	</div>
+	 <!-- Javascript Libs -->
+           <script src="{{url_for('static',filename='lib/js/jquery.min.js')}}"></script>
+            <script src="{{url_for('static',filename='lib/js/bootstrap.min.js')}}"></script>
+            <script src="{{url_for('static',filename='lib/js/Chart.min.js')}}"></script>
+            <script src="{{url_for('static',filename='lib/js/bootstrap-switch.min.js')}}"></script>
+
+            <script src="{{url_for('static',filename='lib/js/jquery.matchHeight-min.js')}}"></script>
+            <script src="{{url_for('static',filename='lib/js/jquery.dataTables.min.js')}}"></script>
+
+            <script src="{{url_for('static',filename='lib/js/dataTables.bootstrap.min.js')}}"></script>
+            <script src="{{url_for('static',filename='lib/js/select2.full.min.js')}}"></script>
+            <script src="{{url_for('static',filename='lib/js/ace/ace.js')}}"></script>
+            <script  src="{{url_for('static',filename='lib/js/ace/mode-html.js')}}"></script>
+            <script src="{{url_for('static',filename='lib/js/ace/theme-github.js')}}"></script>
+            <!-- Javascript -->
+            <script src="{{url_for('static',filename='lib/js/app.js')}}"></script>
+            <script src="{{url_for('static',filename='lib/js/index.js')}}"></script>
+
+
+</body>
+
+</html>
