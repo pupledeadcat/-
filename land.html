@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="en" class="no-js">
+    <head>
+        <meta charset="UTF-8" />
+        <title>养老系统-登录注册界面</title>
+		 <link href="{{url_for('static',filename='login_css/style.css')}}" rel="stylesheet">
+		 <link href="{{url_for('static',filename='login_css/demo.css')}}" rel="stylesheet">
+		 <link href="{{url_for('static',filename='login_css/animate-custom.css')}}" rel="stylesheet">
+
+    </head>
+    <body>
+        <div class="container">
+            <header>
+                <h1><span>养老系统</span></h1>
+            </header>
+            <section>
+                <div id="container_demo" >
+                    <a class="hiddenanchor" id="toregister"></a>
+                    <a class="hiddenanchor" id="tologin"></a>
+                    <div id="wrapper">
+                        <div id="login" class="animate form">
+                                <h1>登录</h1>
+
+                                <form method="post">
+                                {{ form.csrf_token() }}
+                                <p>
+                                    <label  class="uname" data-icon="u" >{{form.name.label}}</label>
+                                    {{form.name}}
+                                </p>
+                                <p>
+                                    <label  class="youpasswd" data-icon="p">{{form.password1.label}}</label>
+                                    {{form.password1}}
+                                </p>
+                                    {% for message in get_flashed_messages() %}
+                                    {{ message }}
+                                    {% endfor %}
+                                <p class="login button">
+                                    {{form.submit}}
+								</p>
+                                </form>
+
+                                <p>
+									还没有用户？<a href="{{url_for('register')}}"> <h3>注册</h3></a>
+								</p>
+                        </div>
+
+                    </div>
+                </div>
+            </section>
+        </div>
+    </body>
+</html>

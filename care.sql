@@ -113,8 +113,8 @@ DROP TABLE IF EXISTS `sys_user`;
 /*!40101 SET character_set_client = utf8 */;
 CREATE TABLE `sys_user` (
   `ID` int(11) NOT NULL AUTO_INCREMENT,
-  `ORG_ID` int(11) NOT NULL,
-  `CLIENT_ID` int(11) NOT NULL,
+  `ORG_ID` int(11),
+  `CLIENT_ID` int(11),
   `UserName` varchar(50) NOT NULL COMMENT '用户名',
   `Password` varchar(50) DEFAULT NULL COMMENT '密码',
   `REAL_NAME` varchar(50) DEFAULT NULL,
