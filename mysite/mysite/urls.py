@@ -20,4 +20,7 @@ from myapp import views
 
 urlpatterns = [
     path('', views.login),
+    path('main', views.main),
+    path('personal',views.personal),
+    path('add_old',views.add_old),
 ]
