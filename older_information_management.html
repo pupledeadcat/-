@@ -1,3 +1,4 @@
+{%  load static %}
 <!DOCTYPE html>
 <html>
 <meta charset="UTF-8">
@@ -7,23 +8,18 @@
     <!-- Fonts -->
     <link href="http://fonts.googleapis.com/css?family=Roboto+Condensed:300,400" rel="stylesheet" type="text/css">
     <link href="http://fonts.googleapis.com/css?family=Lato:300,400,700,900" rel="stylesheet" type="text/css">
-    <!-- CSS Libs -->
-     <link href="{{url_for('static',filename='lib/css/bootstrap.min.css')}}" rel="stylesheet">
-    <link href="{{url_for('static',filename='lib/css/font-awesome.min.css')}}" rel="stylesheet">
-    <link href="{{url_for('static',filename='lib/css/animate.min.css')}}" rel="stylesheet">
-    <link href="{{url_for('static',filename='lib/css/bootstrap-switch.min.css')}}" rel="stylesheet">
-    <link href="{{url_for('static',filename='lib/css/checkbox3.min.css')}}" rel="stylesheet">
-    <link href="{{url_for('static',filename='lib/css/jquery.dataTables.min.css')}}" rel="stylesheet">
-    <link href="{{url_for('static',filename='lib/css/dataTables.bootstrap.css')}}" rel="stylesheet">
-    <link href="{{url_for('static',filename='lib/css/select2.min.css')}}" rel="stylesheet">
+     <!-- CSS Libs -->
+    <link href="{%  static 'lib/css/bootstrap.min.css'%}" rel="stylesheet">
+    <link href="{%  static 'lib/css/font-awesome.min.css'%}" rel="stylesheet">
+    <link href="{% static 'lib/css/animate.min.css'%}" rel="stylesheet">
+    <link href="{% static 'lib/css/bootstrap-switch.min.css'%}" rel="stylesheet">
+    <link href="{% static 'lib/css/checkbox3.min.css'%}" rel="stylesheet">
+    <link href="{% static 'lib/css/jquery.dataTables.min.css'%}" rel="stylesheet">
+    <link href="{% static 'lib/css/dataTables.bootstrap.css'%}" rel="stylesheet">
+    <link href="{% static 'lib/css/select2.min.css'%}" rel="stylesheet">
     <!-- CSS App -->
-     <link href="{{url_for('static',filename='css/style.css')}}" rel="stylesheet">
-    <link href="{{url_for('static',filename='css/themes/flat-blue.css')}}" rel="stylesheet">
-
-	<script src="{{url_for('static',filename='lib/js/jquery-1.4.4.min.js')}}"></script>
-
-    <link rel="stylesheet" href="{{url_for('static',filename='css/style2.css')}}">
-
+     <link href="{% static 'css/style.css'%}" rel="stylesheet">
+    <link href="{% static 'css/themes/flat-blue.css'%}" rel="stylesheet">
 </head>
 
 <body class="flat-blue">
@@ -45,14 +41,14 @@
                     </div>
                     <ul class="nav navbar-nav navbar-right">
                         <li class="dropdown profile">
-                            <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">你的名字 <span class="caret"></span></a>
+                            <a href="" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">{{ name }}<span class="caret"></span></a>
                             <ul class="dropdown-menu animated fadeInDown">
                                 <li>
                                     <div>
-                                        <h4 class="username">你的名字</h4>
+                                        <h4 class="username">{{ name }}</h4>
 										<p>系统管理员</p>
                                         <div class="btn-group margin-bottom-2x" role="group">
-                                            <a href="{{url_for('land')}}"><button type="button" class="btn btn-default"><i class="fa fa-sign-out"></i>注销</button></a>
+                                            <a href="/"><button type="button" class="btn btn-default"><i class="fa fa-sign-out"></i>注销</button></a>
                                       </div>
                                     </div>
                                 </li>
@@ -75,22 +71,22 @@
                         </div>
                         <ul class="nav navbar-nav">
                             <li class="active">
-                                <a href="{{url_for('homepage')}}">
+                                <a href="">
                                     <span class="icon fa fa-tachometer"></span><span class="title">主界面</span>
                                 </a>
                             </li>
                             <li class="panel panel-default dropdown">
                                 <a data-toggle="collapse" href="#query-statistics">
-                                    <span class="icon fa fa-gears"></span><span class="title">系统设置模块</span>
+                                    <span class="icon fa fa-gears"></span><span class="title">个人信息</span>
                                 </a>
                                 <!-- Dropdown level 1 -->
                                 <div id="query-statistics" class="panel-collapse collapse">
                                     <div class="panel-body">
                                         <ul class="nav navbar-nav">
-                                            <li><a href="{{url_for('homepage'}}"> <h3>维护信息</h3></a>
+                                            <li><a href="personal"> <h3>维护信息</h3></a>
                                             </li>
 
-                                            <li><a href="{{url_for('homepage'}}"> <h3>修改密码</h3></a>
+                                            <li><a href="updatepassword"> <h3>修改密码</h3></a>
                                             </li>
                                            
                                         </ul>
@@ -105,10 +101,10 @@
                                 <div id="contract-information-management1" class="panel-collapse collapse">
                                     <div class="panel-body">
                                         <ul class="nav navbar-nav">
-                                            <li><a href="{{url_for('homepage')}}"><h3>新增老人信息</h3></a>
+                                            <li><a href="add_old"><h3>新增老人信息</h3></a>
                                             </li>
 
-                                            <li><a href="{{url_for('homepage'}}"><h3>查看/管理老人信息</h3></a>
+                                            <li><a href=""><h3>查看/管理老人信息</h3></a>
                                             </li>
                                            
                                         </ul>
@@ -124,9 +120,9 @@
                                 <div id="client-information-management" class="panel-collapse collapse">
                                     <div class="panel-body">
                                         <ul class="nav navbar-nav">
-                                            <li><a href="{{url_for('homepage')}}"><h3>新增工作人员信息</h3></a>
+                                            <li><a href=""><h3>新增工作人员信息</h3></a>
                                             </li>
-                                            <li><a href="{{url_for('homepage')}}"><h3>查看/管理工作人员信息</h3></a>
+                                            <li><a href=""><h3>查看/管理工作人员信息</h3></a>
                                             </li>
 
                                         </ul>
@@ -141,10 +137,10 @@
                                 <div id="contract-information-management1" class="panel-collapse collapse">
                                     <div class="panel-body">
                                         <ul class="nav navbar-nav">
-                                            <li><a href="{{url_for('homepage')}}"><h3>义工老人信息</h3></a>
+                                            <li><a href=""><h3>新增义工信息</h3></a>
                                             </li>
 
-                                            <li><a href="{{url_for('homepage'}}"><h3>查看/管理义工信息</h3></a>
+                                            <li><a href=""><h3>查看/管理义工信息</h3></a>
                                             </li>
                                            
                                         </ul>
@@ -160,7 +156,7 @@
                                 <div id="contract-information-management1" class="panel-collapse collapse">
                                     <div class="panel-body">
                                         <ul class="nav navbar-nav">
-                                            <li><a href="{{url_for('homepage')}}"><h3>不确定</h3></a>
+                                            <li><a href=""><h3>不确定</h3></a>
                                             </li>
 
                                          
@@ -177,7 +173,7 @@
                                 <div id="contract-information-management1" class="panel-collapse collapse">
                                     <div class="panel-body">
                                         <ul class="nav navbar-nav">
-                                            <li><a href="{{url_for('homepage')}}"><h3>不确定</h3></a>
+                                            <li><a href=""><h3>不确定</h3></a>
                                             </li>
    
                                         </ul>
@@ -189,10 +185,8 @@
                     <!-- /.navbar-collapse -->
                 </nav>
             </div>
-          
-			
             <!-- Main Content -->
-            <div class="container-fluid">
+		<div class="container-fluid">
                 <div class="side-body">
 
 					<div class="page-title">
