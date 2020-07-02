@@ -23,4 +23,6 @@ urlpatterns = [
     path('main', views.main),
     path('personal',views.personal),
     path('add_old',views.add_old),
+    path('olds_info',views.olds_info),
+    path('old_detail',views.old_detail)
 ]
