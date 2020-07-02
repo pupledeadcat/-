@@ -32,8 +32,8 @@
                             <i class="fa fa-bars icon"></i>
                         </button>
                         <ol class="breadcrumb navbar-breadcrumb">
-                            <li class="active">老人信息管理</li>
-							<li class="active">查看/管理老人信息</li>
+                            <li class="active">义工信息管理</li>
+							<li class="active">新增义工信息</li>
                         </ol>
                         <button type="button" class="navbar-right-expand-toggle pull-right visible-xs">
                             <i class="fa fa-th icon"></i>
@@ -186,81 +186,58 @@
                 </nav>
             </div>
             <!-- Main Content -->
-		<div class="container-fluid">
+			<div class="container-fluid">
                 <div class="side-body">
-
-					<div class="page-title">
-                        <span class="title">老人信息列表</span>
+                    <div class="page-title">
+                        <span class="title">新增义工信息</span>
                     </div>
-
-					<div class="row">
-                        <div class="col-xs-12">
                             <div class="card">
+                                        <form method = "post" >
+                                        <!--{{ form.csrf_token() }}-->
+                                        <div class="form-group">
+                                            <label class="col-sm-2 control-label">表单名称</label>
+                                                表单
+                                        </div>
+                                        <div class="form-group">
+                                            <label class="col-sm-2 control-label">表单名称</label>
+                                                表单
+                                        </div>
+										<div class="form-group">
+                                            <label class="col-sm-2 control-label">表单名称</label>
+                                                表单
+                                        </div>
+										<div class="form-group">
+                                            <label class="col-sm-2 control-label">表单名称</label>
+                                                表单
+                                        </div>
+                                        <div class="form-group">
+                                            <label class="col-sm-2 control-label">表单名称</label>
+                                                表单
+                                        </div>
+										<div class="form-group">
+                                            <label class="col-sm-2 control-label">表单名称</label>
+                                                表单
+                                        </div>
+										<div class="form-group">
+                                            <label class="col-sm-2 control-label">表单名称</label>
+                                                表单
+                                        </div>
+										<!--监听错误信息-->
+                                            <!--
+											{% for message in get_flashed_messages() %}
+                                            {{ message }}
+                                            {% endfor %}
+											-->
+                                        <div class="form-group">
+                                            <div class="col-sm-offset-2 col-sm-10">
+                                                <!--
+												{{form.submit}}
+												-->
+                                            </div>
+                                        </div>
+                                        </form>
 
-                                <div class="search d5">
-	                                <form>
-	                                  <input type="text" placeholder="请输入要查询的老人姓名..." id="key" onkeydown="onSearch(this)">
                                     </form>
-
-                                    <script type="text/javascript">
-                                    function onSearch(obj){//js函数开始
-                                        setTimeout(function(){//因为是即时查询，需要用setTimeout进行延迟，让值写入到input内，再读取
-                                            var storeId = document.getElementById('HTlist2');//获取table的id标识
-                                            var rowsLength = storeId.rows.length;//表格总共有多少行
-                                            var key = obj.value;//获取输入框的值
-                                            var searchCol = 0;//要搜索的哪一列，这里是第一列，从0开始数起
-                                            for(var i=1;i<rowsLength;i++){//按表的行数进行循环，本例第一行是标题，所以i=1，从第二行开始筛选（从0数起）
-                                                var searchText = storeId.rows[i].cells[searchCol].innerHTML;//取得table行，列的值
-                                                if(searchText.match(key)){//用match函数进行筛选，如果input的值，即变量 key的值为空，返回的是ture，
-                                                storeId.rows[i].style.display='';//显示行操作，
-                                                }
-                                                else{
-                                                        storeId.rows[i].style.display='none';//隐藏行操作
-                                                }
-                                            }
-                                        },200);//200为延时时间
-                                    }
-                                    </script>
-                                </div>
-
-							    <div class="card-header">
-                                    <div class="card-title">
-                                        <div class="title">老人信息列表</div>
-                                    </div>
-                                </div>
-
-                                <div class="card-body">
-                                    <table class="datatable table table-striped" cellspacing="0" width="100%" id="HTlist2">
-                                        <thead>
-                                            <tr>
-                                                <th>姓名</th>
-                                                <th>姓名</th>
-                                                <th>姓名</th>
-                                                <th>更改信息</th>
-                                                <th>删除信息</th>
-                                            </tr>
-                                        </thead>
-
-                                        <tbody>
-                                           
-                                            <tr>
-                                                <td>1</td>
-                                                <td>1</td>
-                                                <td>1</td>
-                                                <td><a href="{{url_for('homepage')}}">更改</a></td>
-                                                <td><a href="{{url_for('homepage')}}">删除</a></td>
-                                            </tr>
-											
-                                          
-
-                                        </tbody>
-                                    </table>
-                                </div>
-
-                            </div>
-                        </div>
-                    </div>
-
                 </div>
             </div>
 
@@ -271,25 +248,21 @@
         </footer>
 
 	</div>
-	 <!-- Javascript Libs -->
-           <script src="{{url_for('static',filename='lib/js/jquery.min.js')}}"></script>
-            <script src="{{url_for('static',filename='lib/js/bootstrap.min.js')}}"></script>
-            <script src="{{url_for('static',filename='lib/js/Chart.min.js')}}"></script>
-            <script src="{{url_for('static',filename='lib/js/bootstrap-switch.min.js')}}"></script>
-
-            <script src="{{url_for('static',filename='lib/js/jquery.matchHeight-min.js')}}"></script>
-            <script src="{{url_for('static',filename='lib/js/jquery.dataTables.min.js')}}"></script>
-
-            <script src="{{url_for('static',filename='lib/js/dataTables.bootstrap.min.js')}}"></script>
-            <script src="{{url_for('static',filename='lib/js/select2.full.min.js')}}"></script>
-            <script src="{{url_for('static',filename='lib/js/ace/ace.js')}}"></script>
-            <script  src="{{url_for('static',filename='lib/js/ace/mode-html.js')}}"></script>
-            <script src="{{url_for('static',filename='lib/js/ace/theme-github.js')}}"></script>
+	  <!-- Javascript Libs -->
+            <script type="text/javascript" src="{{url_for('static',filename='lib/js/jquery.min.js')}}"></script>
+            <script type="text/javascript" src="{{url_for('static',filename='lib/js/bootstrap.min.js')}}"></script>
+            <script type="text/javascript" src="{{url_for('static',filename='lib/js/Chart.min.js')}}"></script>
+            <script type="text/javascript" src="{{url_for('static',filename='lib/js/bootstrap-switch.min.js')}}"></script>
+            <script type="text/javascript" src="{{url_for('static',filename='lib/js/jquery.matchHeight-min.js')}}"></script>
+            <script type="text/javascript" src="{{url_for('static',filename='lib/js/jquery.dataTables.min.js')}}"></script>
+            <script type="text/javascript" src="{{url_for('static',filename='lib/js/Chart.min.js')}}"></script>
+            <script type="text/javascript" src="{{url_for('static',filename='lib/js/dataTables.bootstrap.min.js')}}"></script>
+            <script type="text/javascript" src="{{url_for('static',filename='lib/js/ace/ace.js')}}"></script>
+            <script type="text/javascript" src="{{url_for('static',filename='lib/js/ace/mode-html.js')}}"></script>
+            <script type="text/javascript" src="{{url_for('static',filename='lib/js/ace/theme-github.js')}}"></script>
             <!-- Javascript -->
-            <script src="{{url_for('static',filename='lib/js/app.js')}}"></script>
-            <script src="{{url_for('static',filename='lib/js/index.js')}}"></script>
-
-
+            <script type="text/javascript" src="{{url_for('static',filename='lib/js/app.js')}}"></script>
+            <script type="text/javascript" src="{{url_for('static',filename='lib/js/index.js')}}"></script>
 </body>
 
 </html>
