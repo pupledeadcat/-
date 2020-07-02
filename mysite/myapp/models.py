@@ -86,9 +86,9 @@ class OldpersonInfo(models.Model):
 
 class SysUser(models.Model):
     id = models.AutoField(db_column='ID', primary_key=True)  # Field name made lowercase.
-    org_id = models.IntegerField(db_column='ORG_ID')  # Field name made lowercase.
+    org_id = models.IntegerField(db_column='ORG_ID',null=True)  # Field name made lowercase.
     client_id = models.IntegerField(db_column='CLIENT_ID')  # Field name made lowercase.
-    username = models.CharField(db_column='UserName', max_length=50)  # Field name made lowercase.
+    username = models.CharField(db_column='UserName', max_length=50,null=True)  # Field name made lowercase.
     password = models.CharField(db_column='Password', max_length=50, blank=True, null=True)  # Field name made lowercase.
     real_name = models.CharField(db_column='REAL_NAME', max_length=50, blank=True, null=True)  # Field name made lowercase.
     sex = models.CharField(db_column='SEX', max_length=20, blank=True, null=True)  # Field name made lowercase.
