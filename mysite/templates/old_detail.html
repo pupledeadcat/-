@@ -37,7 +37,7 @@
                             <i class="fa fa-bars icon"></i>
                         </button>
                         <ol class="breadcrumb navbar-breadcrumb">
-                            <li class="active">老人信息管理</li>
+                            <li class="active"><a href="olds_info">老人信息管理</a></li>
 							<li class="active">查看/管理老人信息</li>
                         </ol>
                         <button type="button" class="navbar-right-expand-toggle pull-right visible-xs">
@@ -210,42 +210,86 @@
 		<tr align="center">
 			<td bgcolor="#ededed">姓名</td>
 			<td>{{ old.username }}</td>
-			<td bgcolor="#ededed">出生日期</td>
-			<td>{{ old.birthday | date:'Y-m-d' }}</td>
+
+			<td bgcolor="#ededed">编号</td>
+			<td>{{ old.id }}</td>
 			<td bgcolor="#ededed">性别</td>
 			<td>{{ old.gender }}</td>
-			<td colspan="2" rowspan="3"><img src="{%  static '老人头像/曾新101.jpg' %}" width="150px" height="210px"> </td>
+			<td colspan="2" rowspan="3"><img src="{%  static old.profile_photo %}" width="150px" height="210px"> </td>
 		</tr>
 		<tr align="center">
+			<td bgcolor="#ededed">出生日期</td>
+			<td>{{ old.birthday | date:'Y-m-d' }}</td>
 			<td bgcolor="#ededed">健康状态</td>
-			<td>{{ old.health_state }}</td>
-			<td bgcolor="#ededed">政治面貌</td>
-			<td></td>
-			<td bgcolor="#ededed">婚姻状况</td>
-			<td></td>
+			<td >{{ old.health_state }}</td>
+			<td bgcolor="#ededed">电话</td>
+			<td >{{ old.phone }}</td>
+		</tr>
+
+		<tr align="center">
+
+			<td bgcolor="#ededed">身份证号</td>
+			<td colspan="3">{{ old.id_card }}</td>
+			<td bgcolor="#ededed">房间号</td>
+			<td >{{ old.room_number }}</td>
 		</tr>
 		<tr align="center">
-			<td bgcolor="#ededed">毕业学校</td>
-			<td colspan="2"></td>
-			<td bgcolor="#ededed">所学专业</td>
-			<td colspan="2"></td>
+			<td bgcolor="#ededed">入院日期</td>
+			<td colspan="3">{{ old.checkin_date | date:'Y-m-d' }}</td>
+			<td bgcolor="#ededed">出院日期</td>
+			<td colspan="2">{{ old.checkout_date | date:'Y-m-d' }}</td>
 		</tr>
 		<tr align="center">
-			<td bgcolor="#ededed">专业能力</td>
-			<td colspan="7"></td>
-		</tr>
+			<td bgcolor="#ededed" rowspan="2">第一监护人</td>
+			<td bgcolor="#ededed">姓名</td>
+			<td colspan="2">{{ old.firstguardian_name }}</td>
+
+			<td bgcolor="#ededed">与老人关系</td>
+            <td colspan="2">{{ old.firstguardian_relationship }}</td>
+        </tr>
 		<tr align="center">
-			<td bgcolor="#ededed">求职意向</td>
-			<td colspan="7"></td>
-		</tr>
+			<td bgcolor="#ededed">电话</td>
+            <td colspan="2">{{ old.firstguardian_phone }}</td>
+			<td bgcolor="#ededed">微信</td>
+            <td colspan="2">{{ old.firstguardian_wechat }}</td>
+        </tr>
+
+<tr align="center">
+			<td bgcolor="#ededed" rowspan="2">第二监护人</td>
+			<td bgcolor="#ededed">姓名</td>
+			<td colspan="2">{{ old.secondguardian_name}}</td>
+
+			<td bgcolor="#ededed">与老人关系</td>
+            <td colspan="2">{{ old.secondguardian_relationship }}</td>
+        </tr>
 		<tr align="center">
-			<td bgcolor="#ededed">获奖情况</td>
-			<td colspan="7"></td>
-		</tr>
-		<tr align="center">
-			<td bgcolor="#ededed">自我评价</td>
-			<td colspan="7"></td>
-		</tr>
+			<td bgcolor="#ededed">电话</td>
+            <td colspan="2">{{ old.secondguardian_phone }}</td>
+			<td bgcolor="#ededed">微信</td>
+            <td colspan="2">{{ old.secondguardian_wechat }}</td>
+        </tr>
+  <tr align="center">
+
+			<td bgcolor="#ededed">创建时间</td>
+            <td colspan="3">{{ old.created | date:"Y-m-d"}}</td>
+
+			<td bgcolor="#ededed">创建人</td>
+            <td colspan="2">{{ old.createby}}</td>
+    </tr>
+  <tr align="center">
+
+			<td bgcolor="#ededed">修改时间</td>
+            <td colspan="3">{{ old.updated | date:"Y-m-d"}}</td>
+
+			<td bgcolor="#ededed">修改人</td>
+            <td colspan="2">{{ old.updateby}}</td>
+    </tr>
+    <tr align="center">
+
+			<td bgcolor="#ededed">备注</td>
+            <td colspan="7">{{ old.description}}</td>
+    </tr>
+
 	</table>
                     <!-- 原文链接：https://blog.csdn.net/qq_42720683/article/details/81293741-->
                 </div>
