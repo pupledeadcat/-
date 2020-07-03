@@ -24,5 +24,9 @@ urlpatterns = [
     path('personal',views.personal),
     path('add_old',views.add_old),
     path('olds_info',views.olds_info),
-    path('old_detail',views.old_detail)
+    path('old_detail',views.old_detail),
+    path('updatepassword',views.updatepassword), # 修改密码
+    path('old_delete',views.old_delete), # 删除老人信息
+    path('old_update',views.old_update),#修改老人信息
+    path('old_analyze',views.old_analyze),#老人信息统计分析
 ]

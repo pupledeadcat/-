@@ -3,8 +3,8 @@
 {% block title %}
 
        <ol class="breadcrumb navbar-breadcrumb">
-                            <li class="active">老人信息管理</li>
-							<li class="active">新增老人信息</li>
+           <li class="active"><a href="olds_info">老人信息管理</a></li>
+							<li class="active">修改老人信息</li>
                         </ol>
 {% endblock %}
 {% block content %}
@@ -12,19 +12,20 @@
             <div class="container-fluid">
                 <div class="side-body">
                     <div class="page-title">
-                        <span class="title">新增老人信息</span>
+                        <span class="title">修改老人信息</span>
                     </div>
                             <div class="card">
+
                                 <h6 style="color: red">{{ message }}</h6>
-                                        <form  enctype="multipart/form-data" action="add_old" method = "post" data-ajax="false" >
+                                        <form  enctype="multipart/form-data" action="old_update?id={{ old.id }}" method = "post" data-ajax="false" >
                                                     {%  csrf_token %}
                                         <div class="form-group">
                                             <label class="col-sm-2 control-label">姓名</label>
-                                                <input name="name" type="text" >
+                                                <input name="name" type="text" value="{{ old.username }}">
                                         </div>
                                         <div class="form-group">
                                             <label class="col-sm-2 control-label">性别</label>
-                                                <input name="sex" type="text" >
+                                                <input name="sex" type="text" value="{{ old.gender }}">
                                         </div>
 	                                    <div class="form-group">
                                             <label class="col-sm-2 control-label">头像</label>
@@ -32,69 +33,70 @@
                                         </div>
 										<div class="form-group">
                                             <label class="col-sm-2 control-label">身份证号</label>
-                                                <input name="id" type="text" >
+                                                <input name="id" type="text" value="{{ old.id_card }}">
                                         </div>
 										<div class="form-group">
                                             <label class="col-sm-2 control-label">出生日期</label>
-                                                <input name="birth" type="text" >
+                                                <input name="birth" type="text" value="{{ old.birthday |date:'Y-m-d'}}">
 
                                         </div>
 
                                         <div class="form-group">
                                             <label class="col-sm-2 control-label">电话</label>
-                                                <input name="phone" type="text" >
+                                                <input name="phone" type="text" value="{{ old.phone }}">
                                         </div>
 										<div class="form-group">
                                             <label class="col-sm-2 control-label">健康状况</label>
-                                                <input name="health" type="text" >
+                                                <input name="health" type="text" value="{{ old.health_state }}" >
                                         </div>
                                         <div class="form-group">
                                             <label class="col-sm-2 control-label">入养老院日期</label>
-                                                <input name="indate" type="text" >
+                                                <input name="indate" type="text" value="{{ old.checkin_date  |date:'Y-m-d' }}" >
                                         </div>
 										<div class="form-group">
                                             <label class="col-sm-2 control-label">房间号</label>
-                                                <input name="room" type="text" >
+                                                <input name="room" type="text" value="{{ old.room_number }}" >
                                         </div>
 
 										<div class="form-group">
                                             <label class="col-sm-2 control-label">第一监护人姓名</label>
-                                                <input name="name1" type="text" >
+                                                <input name="name1" type="text" value="{{ old.firstguardian_name }}">
                                         </div>
 										<div class="form-group">
                                             <label class="col-sm-2 control-label">与第一监护人关系</label>
-                                                <input name="relation1" type="text" >
+                                                <input name="relation1" type="text" value="{{ old.firstguardian_relationship }}">
                                         </div>
 										<div class="form-group">
                                             <label class="col-sm-2 control-label">第一监护人电话</label>
-                                                <input name="phone1" type="text" >
+                                                <input name="phone1" type="text" value="{{ old.firstguardian_phone }}" >
                                         </div>
 										<div class="form-group">
                                             <label class="col-sm-2 control-label">第一监护人微信</label>
-                                                <input name="wx1" type="text" >
+                                                <input name="wx1" type="text" value="{{ old.firstguardian_wechat }}">
                                         </div>
 
                                             			<div class="form-group">
                                             <label class="col-sm-2 control-label">第二监护人姓名</label>
-                                                <input name="name2" type="text" >
+                                                <input name="name2" type="text" value="{{ old.secondguardian_name  }}" >
                                         </div>
 										<div class="form-group">
                                             <label class="col-sm-2 control-label">与第二监护人关系</label>
-                                                <input name="relation2" type="text" >
+                                                <input name="relation2" type="text" value="{{ old.secondguardian_relationship }}">
                                         </div>
 										<div class="form-group">
                                             <label class="col-sm-2 control-label">第二监护人电话</label>
-                                                <input name="phone2" type="text" >
+                                                <input name="phone2" type="text" value="{{ old.secondguardian_phone }}" >
                                         </div>
 										<div class="form-group">
                                             <label class="col-sm-2 control-label">第二监护人微信</label>
-                                                <input name="wx2" type="text" >
+                                                <input name="wx2" type="text" value="{{ old.secondguardian_wechat }}" >
                                         </div>
 										<div class="form-group">
                                             <label class="col-sm-2 control-label">备注</label>
-                                                <input name="bz" type="text" >
+                                                <input name="bz" type="text" value="{{ old.description }}" >
 
                                         </div>
+
                                                <div class="form-group">
                                             <div class="col-sm-offset-2 col-sm-10">
                                               <button style="height:40px;width: 100px" id="submit">提 交</button>
