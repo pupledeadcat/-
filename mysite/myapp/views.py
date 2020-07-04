@@ -7,7 +7,7 @@ from django.utils.timezone import now
 import datetime
 from sympy import false
 
-from myapp.models import SysUser,EventInfo,EmployeeInfo,OldpersonInfo
+from myapp.models import SysUser,VolunteerInfo,EventInfo,EmployeeInfo,OldpersonInfo
 
 # Create your views here.
 # 登录
@@ -29,9 +29,14 @@ def login(request):
 # 主页
 def main(request):
     name = request.session.get('name')
-    return render(request,'main.html',{'name':name})
+    old_count = OldpersonInfo.objects.filter(remove=0).count()
+    employee_count = EmployeeInfo.objects.filter(remove=0).count()
+    volunteer_count = VolunteerInfo.objects.all().count()
+    return render(request,'main.html',{'name':name,'old_count':old_count,
+                                       'employee_count':employee_count,'volunteer_count':volunteer_count})
 # 管理员信息维护
 def personal(request):
+    message = ''
     if request.method == "POST":
         username = request.POST.get("username")
         name = request.POST.get('name')
@@ -160,6 +165,7 @@ def old_update(request):
         old.birthday = request.POST.get('birth')
         old.health_state = request.POST.get('health')
         old.checkin_date = request.POST.get('indate')
+        old.checkout_date = request.POST.get('outdate')
         old.room_number = request.POST.get('room')
         old.phone = request.POST.get('phone')
 
@@ -225,3 +231,8 @@ def old_analyze(request):
             healthlist[1] = healthlist[1] + 1
     return render(request,'old_analyze.html',{'name':name,'age':json.dumps(agelist),
                                               'gender':json.dumps(genderlist),'health':healthlist})
+
+def camara(request):
+    name = request.session.get('name')
+
+    return render(request,'camara.html', {'name': name})

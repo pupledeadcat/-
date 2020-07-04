@@ -1,0 +1,33 @@
+{% extends "base2.html" %}
+{% load static %}
+
+{% block title %}
+
+       <ol class="breadcrumb navbar-breadcrumb">
+           <li class="active"><a href="olds_info">摄像头管理管理</a></li>
+							<li class="active">查看监控画面</li>
+                        </ol>
+{% endblock %}
+{% block content %}
+
+     <meta http-equiv="refresh" content="5"><!--刷新间隔-->
+
+
+<div class="container-fluid">
+                <div class="side-body">
+                    <div class="page-title">
+                        <span class="title">监控画面</span>
+                    </div>
+                            <div class="card">
+                                <h6 style="color: red">{{ message }}</h6>
+    <div id="mainContent">
+    <img src="{% static '监控视频/video.jpg' %}" id="image">
+                            </div>
+
+
+          </div>
+            </div>
+
+        </div>
+
+{% endblock %}
