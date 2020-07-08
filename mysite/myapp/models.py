@@ -37,7 +37,7 @@ class EmployeeInfo(models.Model):
 
 
 class EventInfo(models.Model):
-    event_type = models.IntegerField(blank=True, null=True)
+    event_type = models.CharField(max_length=8, blank=True, null=True)
     event_date = models.DateTimeField(blank=True, null=True)
     event_location = models.CharField(max_length=200, blank=True, null=True)
     event_desc = models.CharField(max_length=200, blank=True, null=True)

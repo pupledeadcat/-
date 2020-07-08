@@ -16,20 +16,24 @@ Including another URLconf
 from django.contrib import admin
 from django.urls import path
 
-from myapp import views,views_volunteer,views_employee
+from myapp import views_old,views_volunteer,views_employee,views_admin,views_event,views_camera
 
 urlpatterns = [
-    path('', views.login),
-    path('main', views.main),
-    path('personal',views.personal),
-    path('add_old',views.add_old),
-    path('olds_info',views.olds_info),
-    path('old_detail',views.old_detail),
-    path('updatepassword',views.updatepassword), # 修改密码
-    path('old_delete',views.old_delete), # 删除老人信息
-    path('old_update',views.old_update),#修改老人信息
-    path('old_analyze',views.old_analyze),#老人信息统计分析
-    path('camara',views.camara),
+    path('', views_admin.login),
+    path('main', views_admin.main),
+    path('personal', views_admin.personal),
+
+    path('add_old', views_old.add_old),
+    path('olds_info', views_old.olds_info),
+    path('old_detail', views_old.old_detail),
+    path('updatepassword', views_old.updatepassword), # 修改密码
+    path('old_delete', views_old.old_delete), # 删除老人信息
+    path('old_update', views_old.old_update),#修改老人信息
+    path('old_analyze', views_old.old_analyze),#老人信息统计分析
+
+    path('camera', views_camera.camera),
+    path('video_viewer', views_camera.video_viewer),
+    path('open1',views_camera.open1),
 
     path('add_employee', views_employee.add_employee),
     path('add_volunteer', views_volunteer.add_volunteer),
@@ -43,4 +47,7 @@ urlpatterns = [
     path('volunteer_analyze', views_volunteer.volunteer_analyze),
     path('employee_delete', views_employee.employee_delete),
     path('volunteer_delete', views_volunteer.volunteer_delete),
+
+    path('event_info',views_event.events_info),
+    path('events',views_event.test_websocket)
 ]

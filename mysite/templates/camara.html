@@ -10,24 +10,44 @@
 {% endblock %}
 {% block content %}
 
-     <meta http-equiv="refresh" content="5"><!--刷新间隔-->
+    <!-- <meta http-equiv="refresh" content="1">刷新间隔-->
 
 
-<div class="container-fluid">
+<div class="container-fluid" style="float: left">
                 <div class="side-body">
                     <div class="page-title">
-                        <span class="title">监控画面</span>
+                        <span class="title">人脸数据收集</span>
                     </div>
-                            <div class="card">
+                     <div class="card">
                                 <h6 style="color: red">{{ message }}</h6>
-    <div id="mainContent">
-    <img src="{% static '监控视频/video.jpg' %}" id="image">
-                            </div>
 
+                <div style="float: left">
+<a href="open1"><button>开启</button></a></div>
+                         <div>
+                             <a href="close1"><button>关闭</button></a></div>
+                         </br>
+                                <img src="video_viewer" width="640px" height="480px">
 
           </div>
             </div>
 
         </div>
 
+    <div class="container-fluid" style="float: right">
+                <div class="side-body">
+                    <div class="page-title">
+                        <span class="title">人脸数据收集</span>
+                    </div>
+                     <div class="card">
+                                <h6 style="color: red">{{ message }}</h6>
+
+                <div style="float: left">
+<a href="face_collect"><button>开启</button></a></div>
+                         <div>
+                             <a href="face_collect"><button>关闭</button></a></div>
+                         </br>
+                                <img src="video_viewer">
+
+
+          </div>
 {% endblock %}
