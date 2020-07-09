@@ -99,7 +99,7 @@ DROP TABLE IF EXISTS `event_info`;
 /*!40101 SET character_set_client = utf8 */;
 CREATE TABLE `event_info` (
   `id` int(11) NOT NULL AUTO_INCREMENT,
-  `event_type` int(11) DEFAULT NULL COMMENT '事件类型',
+  `event_type` char(8) DEFAULT NULL COMMENT '事件类型',
   `event_date` datetime DEFAULT NULL,
   `event_location` varchar(200) DEFAULT NULL,
   `event_desc` varchar(200) DEFAULT NULL,
