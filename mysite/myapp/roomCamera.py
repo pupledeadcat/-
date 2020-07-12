@@ -1,9 +1,10 @@
 import threading
-
-from myapp.final.oldcare.facial.faceutildlib import FaceUtil
+import argparse
+from oldcare.facial.faceutildlib import FaceUtil
 from PIL import Image, ImageDraw, ImageFont
-from myapp.final.oldcare.utils import fileassistant
+from oldcare.utils import fileassistant
 from keras.models import load_model
+import tensorflow as tf
 from keras.preprocessing.image import img_to_array
 import cv2
 import time
@@ -18,14 +19,14 @@ current_time = time.strftime('%Y-%m-%d %H:%M:%S',
 print('[INFO] %s 陌生人检测程序和表情检测程序启动了.' % (current_time))
 
 # 全局变量
-facial_recognition_model_path = 'myapp/final/models/face_recognition_hog.pickle'
-facial_expression_model_path = 'myapp/final/models/face_expression.hdf5'
+facial_recognition_model_path = 'models/face_recognition_hog.pickle'
+facial_expression_model_path = 'models/face_expression.hdf5'
 
 output_stranger_path = 'supervision/strangers'
 output_smile_path = 'supervision/smile'
 
-people_info_path = 'myapp/final/info/people_info.csv'
-facial_expression_info_path = 'myapp/final/info/facial_expression_info.csv'
+people_info_path = 'info/people_info.csv'
+facial_expression_info_path = 'info/facial_expression_info.csv'
 # your python path
 python_path = '~/anaconda3/envs/tensorflow/bin/python'
 
@@ -58,6 +59,7 @@ facial_expression_limit_time = 2  # if >= 2 seconds, he/she is smiling
 # 初始化人脸识别模型
 faceutil = FaceUtil(facial_recognition_model_path)
 facial_expression_model = load_model(facial_expression_model_path)
+graph = tf.get_default_graph()
 
 print('[INFO] 开始检测陌生人和表情...')
 
@@ -67,7 +69,7 @@ class RecordingThread(threading.Thread):
         threading.Thread.__init__(self)
         self.name = name
         self.isRunning = True
-
+        self.graph=graph
         self.cap = camera
         fourcc = cv2.VideoWriter_fourcc(*'XVID')  # MJPG
         self.out = cv2.VideoWriter(save_video_path, fourcc, 20.0,
@@ -155,7 +157,7 @@ class RecordingThread(threading.Thread):
                                                          % (time.strftime('%Y%m%d_%H%M%S'))), frame)
 
                                 # insert into database
-                                command = '%s myapp/final/inserting.py --event_desc %s --event_type 2 --event_location %s' % (
+                                command = '%s inserting.py --event_desc %s --event_type 2 --event_location %s' % (
                                     python_path, event_desc, event_location)
                                 p = subprocess.Popen(command, shell=True)
 
@@ -196,7 +198,8 @@ class RecordingThread(threading.Thread):
                         roi = np.expand_dims(roi, axis=0)
 
                         # determine facial expression
-                        (neural, smile) = facial_expression_model.predict(roi)[0]
+                        with self.graph.as_default():
+                            (neural, smile) = facial_expression_model.predict(roi)[0]
                         facial_expression_label = 'Neural' if neural > smile else 'Smile'
 
                         if facial_expression_label == 'Smile':  # alert
@@ -248,7 +251,7 @@ class RecordingThread(threading.Thread):
                     frame = cv2.cvtColor(np.asarray(img_PIL), cv2.COLOR_RGB2BGR)
 
 
-                #self.out.write(frame)
+                self.out.write(frame)
             time.sleep(1)
 
         self.out.release()
@@ -264,7 +267,7 @@ class RoomCamera(object):
     def __init__(self):
         # Open a camera
         self.cap = cv2.VideoCapture(0)
-
+        self.graph=graph
         # Initialize video recording environment
         self.is_record = False
         self.out = None
@@ -278,6 +281,8 @@ class RoomCamera(object):
     def get_frame(self):
         global strangers_timing
         global strangers_start_time
+        global facial_expression_timing
+        global facial_expression_start_time
         ret, frame = self.cap.read()
 
         if ret:
@@ -344,7 +349,7 @@ class RoomCamera(object):
                                                      % (time.strftime('%Y%m%d_%H%M%S'))), frame)
 
                             # insert into database
-                            command = '%s myapp/final/inserting.py --event_desc %s --event_type 2 --event_location %s' % (
+                            command = '%s inserting.py --event_desc %s --event_type 2 --event_location %s' % (
                             python_path, event_desc, event_location)
                             p = subprocess.Popen(command, shell=True)
 
@@ -386,7 +391,8 @@ class RoomCamera(object):
                     roi = np.expand_dims(roi, axis=0)
 
                     # determine facial expression
-                    (neural, smile) = facial_expression_model.predict(roi)[0]
+                    with self.graph.as_default():
+                        (neural, smile) = facial_expression_model.predict(roi)[0]
                     facial_expression_label = 'Neural' if neural > smile else 'Smile'
 
                     if facial_expression_label == 'Smile':  # alert
@@ -461,5 +467,4 @@ class RoomCamera(object):
 
         if self.recordingThread != None:
             self.recordingThread.stop()
-
 
